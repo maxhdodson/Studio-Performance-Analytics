@@ -1,0 +1,73 @@
+project_id,project_name,client_id,industry_id,office_id,project_type,project_manager_id,start_date,planned_end_date,actual_end_date,status,budget_hours,budget_labor_cost,contract_value
+1,Pioneer Distribution Group - Warehouse Expansion #1,24,4,1,Warehouse Expansion,105,2024-02-01,2024-06-13,2024-07-08,Complete,402,59997.5,97892.83
+2,Golden Skillet - Hotel Renovation #2,14,2,4,Hotel Renovation,197,2024-03-28,2024-06-20,2024-07-08,Complete,539,81785.66,142063.69
+3,Northstar Medical Group - Urgent Care Prototype #3,21,3,2,Urgent Care Prototype,21,2025-05-10,2025-09-13,2025-06-07,Cancelled,710,92735.16,129694.29
+4,Redwood Grill - Restaurant Remodel #4,13,2,1,Restaurant Remodel,197,2024-09-19,2025-04-24,2024-10-17,Cancelled,1070,108107.54,159319.84
+5,Vertex Labs - Tech Campus Expansion #5,31,6,2,Tech Campus Expansion,149,2026-02-05,2026-08-20,,Active,1018,121260.12,206285.78
+6,Harvest Table Kitchen - Restaurant Remodel #6,12,2,2,Restaurant Remodel,19,2026-07-01,2027-01-06,,Active,1003,119579.28,206437.08
+7,Cascade Family Clinics - Clinic Buildout #7,19,3,1,Clinic Buildout,213,2025-11-10,2026-10-05,,Active,1060,170567.24,240785.97
+8,Willowbrook Health - Urgent Care Prototype #8,22,3,1,Urgent Care Prototype,11,2024-11-25,2025-09-29,2025-10-25,Complete,1287,179831.72,278598.04
+9,Cascade Family Clinics - Urgent Care Prototype #9,19,3,7,Urgent Care Prototype,196,2024-11-13,2025-05-21,2025-05-21,Complete,806,103891.45,148731.96
+10,Bluebonnet General Store - Store Rollout #10,10,1,6,Store Rollout,120,2025-06-13,2025-10-03,2025-09-29,Complete,426,54380.21,79231.35
+11,Route 9 Diner Co. - Restaurant Remodel #11,16,2,1,Restaurant Remodel,113,2026-07-01,2026-12-09,,On Hold,919,147373.24,241463.89
+12,Redwood Grill - Restaurant Remodel #12,13,2,3,Restaurant Remodel,201,2025-05-16,2025-07-18,2025-08-06,Complete,397,43693.86,65154.45
+13,Summit Home & Hardware - Store Rollout #13,4,1,3,Store Rollout,196,2025-01-28,2025-05-06,2025-05-19,Complete,541,65253.05,98547.29
+14,Redwood Grill - Hotel Renovation #14,13,2,3,Hotel Renovation,21,2025-08-25,2026-06-22,2026-01-19,Cancelled,912,148889.29,224459.76
+15,Willowbrook Health - Urgent Care Prototype #15,22,3,7,Urgent Care Prototype,62,2024-09-13,2025-06-20,2025-07-25,Complete,1080,138415.06,212161.97
+16,Union Square Goods - Store Rollout #16,9,1,7,Store Rollout,120,2024-10-24,2025-05-01,2025-05-23,Complete,874,126390.7,185783.74
+17,CopperLeaf Grocers - Store Rollout #17,2,1,1,Store Rollout,43,2026-07-01,2027-06-30,,Active,1309,184426.8,320685.51
+18,Fernwood Hospitality Group - New Restaurant Prototype #18,15,2,3,New Restaurant Prototype,64,2025-12-20,2026-08-01,2026-07-24,Complete,1071,154263.05,220027.51
+19,Anchor Point Ventures - Mixed-Use Development #19,29,5,2,Mixed-Use Development,149,2025-07-17,2026-06-11,2026-06-04,Complete,1742,228738.23,360115.11
+20,Vertex Labs - Tech Campus Expansion #20,31,6,2,Tech Campus Expansion,66,2025-09-11,2026-07-02,2026-08-04,Complete,1486,213288.45,339988.32
+21,Redwood Grill - Restaurant Remodel #21,13,2,1,Restaurant Remodel,118,2024-05-25,2024-11-23,2024-12-14,Complete,691,82516.61,142215.74
+22,Meridian Health Partners - Medical Office Renovation #22,18,3,1,Medical Office Renovation,211,2025-07-27,2026-02-22,2026-03-02,Complete,574,92914.51,128371.78
+23,Anchor Point Ventures - Corporate HQ Buildout #23,29,5,1,Corporate HQ Buildout,196,2024-09-09,2025-07-07,2025-08-05,Complete,1634,182599.08,250216.65
+24,Fernwood Hospitality Group - Restaurant Remodel #24,15,2,1,Restaurant Remodel,149,2025-08-04,2026-07-27,2026-08-21,Complete,2265,240216.56,387026.62
+25,Vertex Labs - R&D Facility Renovation #25,31,6,4,R&D Facility Renovation,113,2025-11-02,2026-02-01,2026-01-24,Complete,555,59526.27,101367.17
+26,Harvest Table Kitchen - New Restaurant Prototype #26,12,2,7,New Restaurant Prototype,137,2025-03-24,2025-09-22,2025-10-18,Complete,891,142552.73,211550.65
+27,Nimbus Technologies - Tech Campus Expansion #27,30,6,3,Tech Campus Expansion,197,2026-03-28,2027-01-02,,Active,842,89567.41,137357.52
+28,Sable Hotel Collective - Restaurant Remodel #28,17,2,1,Restaurant Remodel,121,2025-10-22,2026-03-11,2026-03-26,Complete,807,105773.2,146463.63
+29,Cardinal Variety Stores - Store Remodel Program #29,7,1,7,Store Remodel Program,196,2025-04-01,2025-09-16,2025-09-23,Complete,1050,121943.02,199883.27
+30,Northgate Mart - Store Rollout #30,1,1,4,Store Rollout,94,2024-02-15,2024-08-22,2024-09-26,Complete,1047,150056.38,240913.2
+31,Cascade Family Clinics - Medical Office Renovation #31,19,3,4,Medical Office Renovation,93,2026-07-01,2027-03-17,,Active,1081,144255.58,221912.86
+32,Golden Skillet - Restaurant Remodel #32,14,2,4,Restaurant Remodel,31,2025-09-23,2026-04-28,2026-04-21,Complete,1252,198069.12,283409.72
+33,Bluebonnet General Store - Store Remodel Program #33,10,1,1,Store Remodel Program,208,2025-11-07,2026-09-18,,Active,1351,133606.48,187420.2
+34,Cobalt Real Estate Partners - Mixed-Use Development #34,27,5,3,Mixed-Use Development,213,2025-05-24,2025-07-26,2025-07-29,Complete,303,29745.6,44255.85
+35,Basecamp Supply Co. - Store Refresh #35,5,1,7,Store Refresh,21,2026-07-01,2026-12-30,,Active,1006,164464.23,264516.43
+36,Cobalt Real Estate Partners - Mixed-Use Development #36,27,5,7,Mixed-Use Development,127,2025-07-13,2025-10-12,2025-11-05,Complete,281,43616.84,60952.5
+37,Ironwood Freight - Fulfillment Center Buildout #37,26,4,1,Fulfillment Center Buildout,93,2026-01-10,2026-09-26,,Active,1197,182704.37,264739.51
+38,Atlas Logistics - Distribution Center #38,23,4,1,Distribution Center,43,2024-11-14,2025-10-09,2025-09-30,Complete,1151,114766.63,182200.94
+39,Anchor Point Ventures - Corporate HQ Buildout #39,29,5,4,Corporate HQ Buildout,19,2024-01-13,2024-09-21,2024-09-14,Complete,784,129002.37,186236.16
+40,Northstar Medical Group - Urgent Care Prototype #40,21,3,4,Urgent Care Prototype,120,2024-03-22,2025-01-03,2024-12-27,Complete,1354,184708.21,303675.97
+41,Harvest Table Kitchen - Restaurant Rollout #41,12,2,3,Restaurant Rollout,19,2026-07-01,2027-02-10,,Active,936,98696.74,148102.76
+42,Vertex Labs - Lab Buildout #42,31,6,6,Lab Buildout,118,2026-03-26,2026-12-10,,Active,1633,218838.45,307169.77
+43,Route 9 Diner Co. - Hotel Renovation #43,16,2,1,Hotel Renovation,31,2026-06-03,2027-03-24,,Active,1060,150686.46,239767.6
+44,Basecamp Supply Co. - Store Remodel Program #44,5,1,5,Store Remodel Program,213,2024-04-28,2024-11-17,2024-11-20,Complete,1256,203905.86,284841.5
+45,Vertex Labs - Lab Buildout #45,31,6,4,Lab Buildout,84,2025-04-18,2025-10-31,2025-11-24,Complete,994,115890.02,173123.22
+46,Quanta Research Group - R&D Facility Renovation #46,32,6,1,R&D Facility Renovation,196,2025-06-07,2026-01-10,2026-01-14,Complete,1178,113247.49,177948.57
+47,Cobalt Real Estate Partners - Mixed-Use Development #47,27,5,1,Mixed-Use Development,121,2024-10-27,2025-04-06,2025-05-09,Complete,624,92623.59,143144.98
+48,Quanta Research Group - R&D Facility Renovation #48,32,6,1,R&D Facility Renovation,123,2024-12-18,2025-09-17,2025-10-18,Complete,1710,225166.15,379546.23
+49,Basecamp Supply Co. - New Store Prototype #49,5,1,5,New Store Prototype,149,2024-11-08,2025-01-31,2025-02-22,Complete,364,36120.27,57976.34
+50,Vertex Labs - Tech Campus Expansion #50,31,6,3,Tech Campus Expansion,4,2025-07-01,2025-09-02,2025-09-10,Complete,166,25218.89,40844.85
+51,Harvest Table Kitchen - New Restaurant Prototype #51,12,2,6,New Restaurant Prototype,208,2024-04-20,2025-02-01,2025-02-16,Complete,825,133774.45,205156.38
+52,Route 9 Diner Co. - Restaurant Remodel #52,16,2,1,Restaurant Remodel,31,2025-11-25,2026-02-03,2026-02-28,Complete,309,43127.86,70347.49
+53,Ridgeline Pharmacy - Tenant Improvement #53,6,1,6,Tenant Improvement,121,2025-02-17,2025-04-28,2025-06-01,Complete,420,53879.71,73741.11
+54,Basecamp Supply Co. - Store Rollout #54,5,1,6,Store Rollout,214,2025-03-28,2025-10-10,2025-10-09,Complete,1073,155466.75,234648.83
+55,Basecamp Supply Co. - Store Rollout #55,5,1,1,Store Rollout,94,2025-07-22,2026-05-12,2026-05-10,Complete,1652,236651.87,326904.05
+56,Atlas Logistics - Distribution Center #56,23,4,1,Distribution Center,93,2026-06-20,2027-05-15,,Active,1828,177450.9,258959.57
+57,Anchor Point Ventures - Mixed-Use Development #57,29,5,1,Mixed-Use Development,213,2026-07-06,2027-06-28,,Active,1981,229155.27,331949.72
+58,Basecamp Supply Co. - New Store Prototype #58,5,1,1,New Store Prototype,127,2025-11-05,2026-06-17,2026-06-07,Complete,1391,175448.93,290287.03
+59,Cardinal Variety Stores - Store Remodel Program #59,7,1,1,Store Remodel Program,151,2025-09-17,2026-05-13,2026-06-07,Complete,697,95393.56,141160.73
+60,Vantage Supply Chain - Distribution Center #60,25,4,1,Distribution Center,127,2025-12-18,2026-05-28,2026-06-11,Complete,519,59074.83,86093.45
+61,Bluebonnet General Store - New Store Prototype #61,10,1,1,New Store Prototype,105,2025-08-26,2025-11-18,2025-10-14,Cancelled,419,57221.34,81724.62
+62,Cardinal Variety Stores - Store Remodel Program #62,7,1,1,Store Remodel Program,137,2025-10-13,2026-05-04,2026-06-04,Complete,1285,134319.4,198559.81
+63,Redwood Grill - Restaurant Rollout #63,13,2,1,Restaurant Rollout,137,2026-05-24,2027-05-23,,On Hold,2034,239629.68,350367.36
+64,Ironwood Freight - Warehouse Expansion #64,26,4,1,Warehouse Expansion,214,2024-09-06,2025-08-29,2025-09-17,Complete,2216,243040.66,405652.9
+65,Basecamp Supply Co. - Tenant Improvement #65,5,1,4,Tenant Improvement,49,2025-04-09,2026-03-25,2026-04-08,Complete,1000,164349.04,253375.91
+66,Ironwood Freight - Fulfillment Center Buildout #66,26,4,3,Fulfillment Center Buildout,149,2025-06-23,2026-04-13,2026-04-09,Complete,1628,229600.28,342564.43
+67,Trailhead Outfitters - Store Refresh #67,3,1,7,Store Refresh,137,2026-06-26,2027-02-26,,Active,840,123714.96,194628.05
+68,Fernwood Hospitality Group - Restaurant Rollout #68,15,2,2,Restaurant Rollout,179,2025-10-23,2026-07-30,2026-02-19,Cancelled,833,103390.53,179350.64
+69,Prairie Fresh Market - Store Remodel Program #69,8,1,2,Store Remodel Program,121,2025-04-17,2026-01-08,2026-02-11,Complete,1148,114458.13,156564.21
+70,Prairie Fresh Market - New Store Prototype #70,8,1,6,New Store Prototype,35,2025-03-24,2025-09-01,2025-09-12,Complete,762,123514.4,178199.44
+71,Ironwood Freight - Fulfillment Center Buildout #71,26,4,1,Fulfillment Center Buildout,151,2025-12-20,2026-05-09,2026-04-29,Complete,741,81069.04,133839.33
+72,Basecamp Supply Co. - Store Refresh #72,5,1,1,Store Refresh,211,2024-06-07,2025-02-21,2025-03-14,Complete,1193,166706.96,264862.07

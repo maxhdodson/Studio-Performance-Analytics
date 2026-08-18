@@ -1,0 +1,221 @@
+employee_id,first_name,last_name,office_id,title,department,hire_date,employment_type,target_utilization,billable_flag
+1,Laura,Simmons,4,Project Architect,Architecture,2021-12-04,Full-Time,0.75,1
+2,Hannah,Martinez,6,Project Architect,Architecture,2019-04-08,Full-Time,0.75,1
+3,Alicia,Beckett,1,Architectural Designer,Architecture,2022-08-19,Full-Time,0.8,1
+4,Carlos,Blackwood,6,Project Manager,Project Delivery,2022-03-07,Contract,0.65,1
+5,Robert,Fitzgerald,1,Project Architect,Architecture,2024-10-09,Full-Time,0.75,1
+6,Brian,Patel,4,Interior Designer,Interior Design,2023-11-20,Full-Time,0.78,1
+7,Michael,Martinez,2,Architectural Designer,Architecture,2023-05-03,Full-Time,0.8,1
+8,Emily,Osei,6,MEP Engineer,Engineering,2020-06-07,Full-Time,0.75,1
+9,Michael,Preston,4,Construction Administrator,Project Delivery,2023-09-24,Full-Time,0.72,1
+10,Ricardo,Salinas,2,Architectural Designer,Architecture,2021-06-27,Full-Time,0.8,1
+11,Andres,Rowland,1,Project Manager,Project Delivery,2021-04-19,Full-Time,0.65,1
+12,Rachel,Keating,1,BIM/CAD Technician,Architecture,2020-03-08,Full-Time,0.82,1
+13,Hannah,Ochoa,3,Project Manager,Project Delivery,2022-04-05,Full-Time,0.65,1
+14,Linda,Foster,1,Project Architect,Architecture,2023-11-14,Full-Time,0.75,1
+15,Emily,Ramos,2,BIM/CAD Technician,Architecture,2021-09-28,Contract,0.82,1
+16,Diego,Sato,4,Design Architect,Architecture,2024-06-04,Full-Time,0.7,1
+17,Miguel,Delgado,1,Project Architect,Architecture,2025-03-17,Full-Time,0.75,1
+18,Ricardo,Winslow,6,Structural Engineer,Engineering,2023-03-12,Full-Time,0.75,1
+19,Olivia,Whitfield,3,Project Manager,Project Delivery,2023-08-01,Full-Time,0.65,1
+20,Megan,Simmons,2,Operations/BI Analyst,Operations,2019-10-03,Full-Time,0.15,0
+21,Kayla,Bennett,1,Project Manager,Project Delivery,2020-08-18,Full-Time,0.65,1
+22,Fatima,Beckett,3,BIM/CAD Technician,Architecture,2024-12-07,Full-Time,0.82,1
+23,Nicole,Torres,2,Construction Administrator,Project Delivery,2025-08-04,Full-Time,0.72,1
+24,Sofia,Ibarra,1,Project Architect,Architecture,2023-01-03,Full-Time,0.75,1
+25,David,Castillo,1,Project Architect,Architecture,2019-04-09,Full-Time,0.75,1
+26,Ethan,Hartley,1,Design Architect,Architecture,2022-08-26,Full-Time,0.7,1
+27,Omar,Blackwood,1,BIM/CAD Technician,Architecture,2022-12-02,Full-Time,0.82,1
+28,Rachel,Castillo,7,Project Architect,Architecture,2024-02-08,Full-Time,0.75,1
+29,Priya,Sato,3,Design Architect,Architecture,2022-02-15,Full-Time,0.7,1
+30,James,Patel,6,Project Architect,Architecture,2025-04-06,Full-Time,0.75,1
+31,Ashley,Alvarado,3,Senior Project Manager,Project Delivery,2022-07-09,Contract,0.55,1
+32,Xavier,Salinas,5,Architectural Designer,Architecture,2023-08-05,Full-Time,0.8,1
+33,Samantha,Beckett,1,Project Architect,Architecture,2019-06-02,Full-Time,0.75,1
+34,Olivia,Alvarado,3,Business Development Manager,Operations,2019-09-03,Full-Time,0.2,0
+35,Rachel,Reyes,1,Senior Project Manager,Project Delivery,2025-10-08,Full-Time,0.55,1
+36,Trevor,Ochoa,1,Project Architect,Architecture,2023-06-09,Full-Time,0.75,1
+37,Rachel,Bennett,4,Architectural Designer,Architecture,2023-05-15,Full-Time,0.8,1
+38,Emily,Lindqvist,5,Project Architect,Architecture,2025-02-03,Full-Time,0.75,1
+39,Omar,Sullivan,3,Design Architect,Architecture,2025-06-10,Full-Time,0.7,1
+40,Victoria,Ramos,6,Construction Administrator,Project Delivery,2019-09-10,Contract,0.72,1
+41,Daniel,Reyes,1,Studio Director,Leadership,2025-12-18,Full-Time,0.35,0
+42,Brittany,Delgado,1,Structural Engineer,Engineering,2023-05-28,Full-Time,0.75,1
+43,David,Whitfield,4,Project Manager,Project Delivery,2021-03-21,Contract,0.65,1
+44,Paige,Blackwood,1,MEP Engineer,Engineering,2023-02-03,Contract,0.75,1
+45,David,Osei,4,Design Architect,Architecture,2023-03-14,Full-Time,0.7,1
+46,David,Fitzgerald,1,Studio Director,Leadership,2021-04-22,Full-Time,0.35,1
+47,Victoria,Foster,6,MEP Engineer,Engineering,2025-04-28,Full-Time,0.75,1
+48,Tyler,Nguyen,5,Design Architect,Architecture,2020-06-26,Contract,0.7,1
+49,Sarah,Sato,5,Senior Project Manager,Project Delivery,2020-12-04,Full-Time,0.55,1
+50,Wei,Keating,1,Civil Engineer,Engineering,2022-04-08,Full-Time,0.75,1
+51,Michael,Sato,1,Structural Engineer,Engineering,2022-09-13,Full-Time,0.75,1
+52,Maria,Reyes,6,Structural Engineer,Engineering,2025-05-06,Full-Time,0.75,1
+53,Nathan,Blackwood,7,Project Architect,Architecture,2022-06-14,Full-Time,0.75,1
+54,Ethan,O'Brien,3,MEP Engineer,Engineering,2021-12-14,Full-Time,0.75,1
+55,Miguel,O'Brien,7,Interior Designer,Interior Design,2022-02-22,Contract,0.78,1
+56,Linda,Herrera,4,BIM/CAD Technician,Architecture,2023-11-14,Full-Time,0.82,1
+57,Wei,Mendez,4,Interior Designer,Interior Design,2023-07-22,Full-Time,0.78,1
+58,Rachel,Salinas,1,BIM/CAD Technician,Architecture,2024-05-10,Full-Time,0.82,1
+59,Andres,Keating,5,BIM/CAD Technician,Architecture,2022-11-07,Full-Time,0.82,1
+60,Samantha,Alvarado,5,Accounting Specialist,Operations,2023-05-17,Full-Time,0.05,1
+61,Sarah,Herrera,1,Marketing Coordinator,Operations,2021-04-05,Full-Time,0.1,0
+62,Michael,Keating,3,Senior Project Manager,Project Delivery,2022-11-19,Full-Time,0.55,1
+63,Sarah,Foster,4,Interior Designer,Interior Design,2023-01-25,Full-Time,0.78,1
+64,John,Chen,6,Project Manager,Project Delivery,2024-12-17,Full-Time,0.65,1
+65,Linda,Keating,3,Business Development Manager,Operations,2020-08-22,Full-Time,0.2,0
+66,Jorge,Lindqvist,1,Project Manager,Project Delivery,2024-09-14,Full-Time,0.65,1
+67,Samantha,Nakamura,3,Studio Director,Leadership,2022-04-27,Full-Time,0.35,1
+68,Laura,Torres,3,BIM/CAD Technician,Architecture,2019-05-08,Full-Time,0.82,1
+69,William,Foster,1,Interior Designer,Interior Design,2021-12-05,Full-Time,0.78,1
+70,Diego,Keating,1,MEP Engineer,Engineering,2022-04-27,Full-Time,0.75,1
+71,Xavier,Nguyen,6,BIM/CAD Technician,Architecture,2024-10-13,Full-Time,0.82,1
+72,Brian,Mendez,7,Structural Engineer,Engineering,2023-12-18,Full-Time,0.75,1
+73,Laura,Blackwood,6,Civil Engineer,Engineering,2022-07-11,Full-Time,0.75,1
+74,Emily,Bennett,5,Construction Administrator,Project Delivery,2025-09-01,Full-Time,0.72,1
+75,Jennifer,Blackwood,4,BIM/CAD Technician,Architecture,2020-08-06,Full-Time,0.82,1
+76,Andres,Castillo,2,Architectural Designer,Architecture,2024-07-09,Full-Time,0.8,1
+77,Jennifer,Nakamura,6,Architectural Designer,Architecture,2019-09-02,Contract,0.8,1
+78,Kayla,Martinez,2,BIM/CAD Technician,Architecture,2024-04-07,Full-Time,0.82,1
+79,Steven,Reyes,4,Architectural Designer,Architecture,2023-04-15,Full-Time,0.8,1
+80,Nathan,Reyes,5,Design Architect,Architecture,2024-03-10,Full-Time,0.7,1
+81,Brittany,Vargas,1,Structural Engineer,Engineering,2022-12-07,Full-Time,0.75,1
+82,Robert,Herrera,4,BIM/CAD Technician,Architecture,2024-10-26,Full-Time,0.82,1
+83,Omar,Beckett,7,Project Manager,Project Delivery,2022-06-03,Full-Time,0.65,1
+84,Amanda,Kowalski,2,Senior Project Manager,Project Delivery,2022-06-21,Full-Time,0.55,1
+85,Priya,Ramos,2,Design Architect,Architecture,2025-05-20,Full-Time,0.7,1
+86,Laura,Doyle,3,Civil Engineer,Engineering,2024-02-09,Full-Time,0.75,1
+87,Victoria,Vargas,1,Civil Engineer,Engineering,2021-08-28,Full-Time,0.75,1
+88,Daniel,Castillo,3,Structural Engineer,Engineering,2021-10-23,Full-Time,0.75,1
+89,Wei,Patel,3,Interior Designer,Interior Design,2021-07-16,Full-Time,0.78,1
+90,Paige,Guerrero,1,Civil Engineer,Engineering,2022-01-03,Full-Time,0.75,1
+91,Nicole,Nakamura,2,Architectural Designer,Architecture,2023-06-14,Contract,0.8,1
+92,Emily,Sato,3,Structural Engineer,Engineering,2021-04-04,Full-Time,0.75,1
+93,Derek,Chen,1,Project Manager,Project Delivery,2020-12-16,Full-Time,0.65,1
+94,Nathan,Marsh,3,Project Manager,Project Delivery,2025-04-10,Full-Time,0.65,1
+95,Diego,Bennett,1,Project Architect,Architecture,2021-01-18,Full-Time,0.75,1
+96,Derek,Guerrero,7,BIM/CAD Technician,Architecture,2020-01-19,Full-Time,0.82,1
+97,Ashley,Delgado,3,Structural Engineer,Engineering,2025-08-04,Full-Time,0.75,1
+98,Ricardo,Coleman,2,Project Architect,Architecture,2020-10-10,Full-Time,0.75,1
+99,Tyler,Preston,1,Interior Designer,Interior Design,2023-10-08,Full-Time,0.78,1
+100,Megan,Ochoa,2,Studio Director,Leadership,2025-05-19,Full-Time,0.35,1
+101,Fatima,Larsen,5,Marketing Coordinator,Operations,2021-02-06,Full-Time,0.1,0
+102,Xavier,Preston,1,MEP Engineer,Engineering,2022-01-08,Full-Time,0.75,1
+103,Michael,Ibarra,1,Senior Project Manager,Project Delivery,2025-11-19,Full-Time,0.55,1
+104,Diego,Ibarra,7,MEP Engineer,Engineering,2023-05-27,Full-Time,0.75,1
+105,Nathan,Hartley,1,Project Manager,Project Delivery,2025-08-04,Full-Time,0.65,1
+106,Laura,Winslow,1,MEP Engineer,Engineering,2023-08-03,Full-Time,0.75,1
+107,Nathan,Delgado,6,Construction Administrator,Project Delivery,2019-04-22,Full-Time,0.72,1
+108,Derek,Sato,3,Marketing Coordinator,Operations,2023-03-16,Full-Time,0.1,0
+109,Hannah,Guerrero,1,Operations/BI Analyst,Operations,2025-08-12,Full-Time,0.15,0
+110,Tyler,Guerrero,1,Design Architect,Architecture,2021-07-27,Full-Time,0.7,1
+111,Daniel,Doyle,1,Project Architect,Architecture,2020-07-28,Full-Time,0.75,1
+112,Tyler,Coleman,7,BIM/CAD Technician,Architecture,2020-06-20,Full-Time,0.82,1
+113,Fatima,Sato,4,Project Manager,Project Delivery,2023-05-15,Full-Time,0.65,1
+114,Ricardo,Preston,3,Project Architect,Architecture,2024-12-06,Full-Time,0.75,1
+115,John,Reyes,1,MEP Engineer,Engineering,2022-02-21,Full-Time,0.75,1
+116,Marcus,Sato,3,Construction Administrator,Project Delivery,2022-08-16,Full-Time,0.72,1
+117,Nathan,Winslow,3,MEP Engineer,Engineering,2024-03-28,Full-Time,0.75,1
+118,Grace,Winslow,5,Senior Project Manager,Project Delivery,2021-01-10,Full-Time,0.55,1
+119,Trevor,Guerrero,6,BIM/CAD Technician,Architecture,2025-08-18,Full-Time,0.82,1
+120,Brian,Keating,1,Project Manager,Project Delivery,2025-04-23,Full-Time,0.65,1
+121,Tyler,Martinez,2,Senior Project Manager,Project Delivery,2021-08-23,Full-Time,0.55,1
+122,Alicia,Foster,2,Operations/BI Analyst,Operations,2022-01-05,Full-Time,0.15,0
+123,Jorge,Kowalski,6,Senior Project Manager,Project Delivery,2023-08-01,Full-Time,0.55,1
+124,Elizabeth,Sullivan,2,BIM/CAD Technician,Architecture,2022-05-11,Full-Time,0.82,1
+125,Grace,Beckett,2,Project Architect,Architecture,2022-06-21,Full-Time,0.75,1
+126,David,Lindqvist,5,Senior Project Manager,Project Delivery,2019-11-22,Contract,0.55,1
+127,Hannah,Kowalski,7,Project Manager,Project Delivery,2024-12-28,Full-Time,0.65,1
+128,Maria,Martinez,1,Structural Engineer,Engineering,2021-01-10,Full-Time,0.75,1
+129,Tyler,Hartley,2,Architectural Designer,Architecture,2024-03-06,Full-Time,0.8,1
+130,Brittany,Simmons,4,MEP Engineer,Engineering,2022-10-05,Full-Time,0.75,1
+131,Trevor,Whitfield,4,Civil Engineer,Engineering,2025-08-10,Full-Time,0.75,1
+132,Omar,Ochoa,1,MEP Engineer,Engineering,2021-07-23,Full-Time,0.75,1
+133,Brian,Nakamura,6,Architectural Designer,Architecture,2020-07-19,Full-Time,0.8,1
+134,Maria,Rowland,1,Construction Administrator,Project Delivery,2021-10-28,Full-Time,0.72,1
+135,Nathan,Guerrero,5,Project Architect,Architecture,2024-05-25,Full-Time,0.75,1
+136,Ricardo,O'Brien,4,Structural Engineer,Engineering,2023-11-25,Full-Time,0.75,1
+137,Ricardo,Kowalski,4,Senior Project Manager,Project Delivery,2025-11-02,Full-Time,0.55,1
+138,Miguel,Bennett,2,BIM/CAD Technician,Architecture,2019-05-11,Full-Time,0.82,1
+139,Diego,Osei,1,Design Architect,Architecture,2023-05-27,Full-Time,0.7,1
+140,Kevin,Castillo,6,Marketing Coordinator,Operations,2024-08-03,Full-Time,0.1,1
+141,Nicole,Patel,6,Construction Administrator,Project Delivery,2024-01-09,Full-Time,0.72,1
+142,Chloe,Vargas,2,Construction Administrator,Project Delivery,2024-06-04,Full-Time,0.72,1
+143,Sofia,Doyle,3,BIM/CAD Technician,Architecture,2025-04-21,Full-Time,0.82,1
+144,Megan,Mendez,6,Business Development Manager,Operations,2020-01-02,Full-Time,0.2,0
+145,William,Vargas,1,Studio Director,Leadership,2022-11-24,Full-Time,0.35,0
+146,Tyler,Kowalski,3,Construction Administrator,Project Delivery,2024-10-14,Contract,0.72,1
+147,Fatima,Torres,1,Construction Administrator,Project Delivery,2022-04-28,Full-Time,0.72,1
+148,Alicia,Fitzgerald,7,MEP Engineer,Engineering,2019-05-07,Contract,0.75,1
+149,Jennifer,Larsen,7,Project Manager,Project Delivery,2023-10-01,Full-Time,0.65,1
+150,Ethan,Larsen,1,Operations/BI Analyst,Operations,2019-09-07,Full-Time,0.15,1
+151,Nathan,Whitfield,1,Project Manager,Project Delivery,2021-03-05,Full-Time,0.65,1
+152,Maria,Bennett,5,Project Architect,Architecture,2019-04-19,Full-Time,0.75,1
+153,Samantha,Mendez,1,Project Architect,Architecture,2023-12-03,Full-Time,0.75,1
+154,Robert,Torres,5,Interior Designer,Interior Design,2023-10-02,Full-Time,0.78,1
+155,Megan,Keating,6,BIM/CAD Technician,Architecture,2023-01-02,Contract,0.82,1
+156,Robert,Guerrero,6,MEP Engineer,Engineering,2024-08-03,Full-Time,0.75,1
+157,William,Sato,1,Design Architect,Architecture,2023-10-18,Full-Time,0.7,1
+158,Kevin,Keating,2,BIM/CAD Technician,Architecture,2023-07-04,Full-Time,0.82,1
+159,Kayla,Salinas,1,BIM/CAD Technician,Architecture,2024-04-14,Full-Time,0.82,1
+160,Emily,Rowland,1,Structural Engineer,Engineering,2022-02-11,Full-Time,0.75,1
+161,Elizabeth,Nakamura,4,MEP Engineer,Engineering,2019-02-03,Full-Time,0.75,1
+162,William,Salinas,5,MEP Engineer,Engineering,2019-09-18,Full-Time,0.75,1
+163,Trevor,Blackwood,1,Structural Engineer,Engineering,2025-12-02,Contract,0.75,1
+164,Ethan,Winslow,4,Structural Engineer,Engineering,2021-11-16,Full-Time,0.75,1
+165,Nicole,Reyes,1,Senior Project Manager,Project Delivery,2024-10-08,Full-Time,0.55,1
+166,Victoria,Lindqvist,6,Accounting Specialist,Operations,2023-09-01,Full-Time,0.05,1
+167,Laura,Herrera,4,Project Architect,Architecture,2025-06-01,Full-Time,0.75,1
+168,Michael,Foster,1,BIM/CAD Technician,Architecture,2024-01-03,Full-Time,0.82,1
+169,Grace,Alvarado,1,MEP Engineer,Engineering,2022-12-11,Full-Time,0.75,1
+170,Ashley,Foster,3,Project Architect,Architecture,2020-10-02,Full-Time,0.75,1
+171,Amanda,Preston,1,BIM/CAD Technician,Architecture,2022-05-07,Full-Time,0.82,1
+172,Kevin,Ochoa,1,MEP Engineer,Engineering,2022-11-10,Full-Time,0.75,1
+173,James,Larsen,2,BIM/CAD Technician,Architecture,2021-04-25,Full-Time,0.82,1
+174,James,Guerrero,1,Structural Engineer,Engineering,2024-03-05,Full-Time,0.75,1
+175,Trevor,Fitzgerald,4,Interior Designer,Interior Design,2019-12-02,Full-Time,0.78,1
+176,Andres,Hartley,2,Project Architect,Architecture,2022-07-23,Full-Time,0.75,1
+177,Andres,Alvarado,1,MEP Engineer,Engineering,2024-10-15,Full-Time,0.75,1
+178,Robert,Simmons,6,Project Architect,Architecture,2022-07-17,Full-Time,0.75,1
+179,John,Castillo,6,Project Manager,Project Delivery,2024-02-17,Full-Time,0.65,1
+180,Kayla,Fitzgerald,3,Architectural Designer,Architecture,2022-11-27,Full-Time,0.8,1
+181,Priya,Preston,1,Architectural Designer,Architecture,2020-11-03,Full-Time,0.8,1
+182,Derek,Hartley,5,Interior Designer,Interior Design,2024-08-22,Contract,0.78,1
+183,Victoria,Doyle,3,BIM/CAD Technician,Architecture,2025-11-11,Full-Time,0.82,1
+184,Megan,Sato,1,MEP Engineer,Engineering,2023-06-17,Full-Time,0.75,1
+185,Nicole,Marsh,2,Project Architect,Architecture,2019-02-20,Full-Time,0.75,1
+186,Samantha,Martinez,2,BIM/CAD Technician,Architecture,2022-10-21,Full-Time,0.82,1
+187,Ashley,Torres,4,Interior Designer,Interior Design,2020-06-23,Full-Time,0.78,1
+188,Paige,Torres,4,Project Architect,Architecture,2025-09-17,Full-Time,0.75,1
+189,Kayla,Castillo,2,Business Development Manager,Operations,2023-01-26,Full-Time,0.2,0
+190,Brian,Marsh,1,Interior Designer,Interior Design,2021-11-20,Full-Time,0.78,1
+191,Elizabeth,Fitzgerald,1,BIM/CAD Technician,Architecture,2021-11-23,Full-Time,0.82,1
+192,Jennifer,Herrera,1,Construction Administrator,Project Delivery,2023-11-26,Full-Time,0.72,1
+193,Samantha,Ramos,1,Construction Administrator,Project Delivery,2019-11-14,Full-Time,0.72,1
+194,Fatima,Castillo,1,Structural Engineer,Engineering,2025-08-07,Full-Time,0.75,1
+195,Robert,Winslow,1,Project Architect,Architecture,2024-12-17,Full-Time,0.75,1
+196,William,Preston,1,Project Manager,Project Delivery,2022-03-06,Full-Time,0.65,1
+197,Carlos,Torres,5,Project Manager,Project Delivery,2019-06-22,Full-Time,0.65,1
+198,Derek,Torres,7,BIM/CAD Technician,Architecture,2021-04-10,Contract,0.82,1
+199,Wei,Osei,5,Studio Director,Leadership,2023-10-15,Full-Time,0.35,0
+200,Carlos,O'Brien,2,Interior Designer,Interior Design,2024-03-28,Full-Time,0.78,1
+201,Sofia,Kowalski,4,Senior Project Manager,Project Delivery,2024-09-28,Full-Time,0.55,1
+202,Jorge,Winslow,1,Design Architect,Architecture,2020-07-03,Contract,0.7,1
+203,Omar,Nguyen,1,Civil Engineer,Engineering,2022-07-17,Full-Time,0.75,1
+204,John,Nguyen,2,Project Architect,Architecture,2021-02-27,Full-Time,0.75,1
+205,David,Marsh,1,Design Architect,Architecture,2025-08-23,Full-Time,0.7,1
+206,Victoria,Whitfield,5,Civil Engineer,Engineering,2025-01-09,Full-Time,0.75,1
+207,Nathan,Ramos,1,Marketing Coordinator,Operations,2022-05-08,Full-Time,0.1,0
+208,Emily,Sullivan,2,Project Manager,Project Delivery,2020-08-20,Full-Time,0.65,1
+209,Paige,Foster,4,BIM/CAD Technician,Architecture,2021-01-20,Full-Time,0.82,1
+210,Trevor,Patel,3,Architectural Designer,Architecture,2023-06-03,Contract,0.8,1
+211,Marcus,Salinas,3,Project Manager,Project Delivery,2019-08-02,Full-Time,0.65,1
+212,Maria,Fitzgerald,7,Architectural Designer,Architecture,2024-06-08,Full-Time,0.8,1
+213,Samantha,Castillo,4,Project Manager,Project Delivery,2020-06-18,Full-Time,0.65,1
+214,Brittany,Keating,4,Senior Project Manager,Project Delivery,2025-08-21,Full-Time,0.55,1
+215,Emily,Martinez,1,Construction Administrator,Project Delivery,2021-01-26,Full-Time,0.72,1
+216,Marcus,Rowland,1,Marketing Coordinator,Operations,2025-09-16,Full-Time,0.1,1
+217,Kayla,Coleman,1,Structural Engineer,Engineering,2025-06-09,Full-Time,0.75,1
+218,Samantha,Torres,2,Studio Director,Leadership,2025-07-11,Contract,0.35,0
+219,Olivia,Sato,3,Business Development Manager,Operations,2024-12-14,Full-Time,0.2,1
+220,Andres,Kowalski,6,Interior Designer,Interior Design,2019-11-10,Full-Time,0.78,1

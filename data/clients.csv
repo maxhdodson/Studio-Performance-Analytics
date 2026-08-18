@@ -1,0 +1,33 @@
+client_id,client_name,industry_id,client_tier
+1,Northgate Mart,1,Regional
+2,CopperLeaf Grocers,1,Regional
+3,Trailhead Outfitters,1,Regional
+4,Summit Home & Hardware,1,Regional
+5,Basecamp Supply Co.,1,Strategic
+6,Ridgeline Pharmacy,1,Emerging
+7,Cardinal Variety Stores,1,Regional
+8,Prairie Fresh Market,1,Emerging
+9,Union Square Goods,1,Strategic
+10,Bluebonnet General Store,1,Emerging
+11,Basecamp Coffee Co.,2,Emerging
+12,Harvest Table Kitchen,2,Strategic
+13,Redwood Grill,2,Regional
+14,Golden Skillet,2,Regional
+15,Fernwood Hospitality Group,2,Emerging
+16,Route 9 Diner Co.,2,Regional
+17,Sable Hotel Collective,2,Emerging
+18,Meridian Health Partners,3,Strategic
+19,Cascade Family Clinics,3,Regional
+20,BrightPath Urgent Care,3,Emerging
+21,Northstar Medical Group,3,Strategic
+22,Willowbrook Health,3,Strategic
+23,Atlas Logistics,4,Emerging
+24,Pioneer Distribution Group,4,Regional
+25,Vantage Supply Chain,4,Regional
+26,Ironwood Freight,4,Regional
+27,Cobalt Real Estate Partners,5,Regional
+28,Highline Development Group,5,Regional
+29,Anchor Point Ventures,5,Emerging
+30,Nimbus Technologies,6,Regional
+31,Vertex Labs,6,Emerging
+32,Quanta Research Group,6,Regional

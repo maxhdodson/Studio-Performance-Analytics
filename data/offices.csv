@@ -1,0 +1,8 @@
+office_id,city,state,region,is_hq
+1,Bentonville,AR,South,1
+2,Springfield,MO,Midwest,0
+3,Fort Worth,TX,South,0
+4,Boston,MA,Northeast,0
+5,Franklin,MA,Northeast,0
+6,Baltimore,MD,Northeast,0
+7,Mexico City,MX,International,0
