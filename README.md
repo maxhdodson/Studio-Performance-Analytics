@@ -112,6 +112,28 @@ Dates arriving in three different formats (`2025-01-14`, `01/14/2025`,
 `1/14/25`) are normalized to ISO before loading, and task categories with
 inconsistent casing/whitespace are normalized as well.
 
+## How the ETL works, and design notes for production
+
+**What `etl/clean_and_load.py` does today** (a single batch script run by hand):
+
+1. Reads the raw timekeeping CSV and the clean reference tables.
+2. Validates keys: rows whose employee or project does not exist in the reference tables are rejected.
+3. Parses messy values: three date formats are normalized to ISO dates; hours with stray units or whitespace are parsed; negative, blank and implausible (over 16 hours in a day) values are rejected.
+4. Normalizes task categories (case and whitespace).
+5. Removes exact duplicates on employee, project, date, hours and category.
+6. Loads the cleaned rows and reference data into SQLite against the schema in `sql/01_schema.sql`, then runs the analytical SQL.
+7. Counts every rejection by reason and shows those counts on the dashboard.
+
+**Design notes: what I would change to run this as a production pipeline.** These are notes only. This project has not been run in production, and none of the items below is implemented here.
+
+- **Orchestration and scheduling:** run the steps as separate tasks (extract, validate, transform, load, publish) in a scheduler such as cron for a simple case, or an orchestrator such as Airflow or Dagster when dependencies and retries matter.
+- **Incremental, idempotent loads:** process only new or changed dates using a watermark, and load with upserts keyed on the natural key so re-running a day never creates duplicates.
+- **Quarantine instead of dropping:** write rejected rows, with the rejection reason, to a quarantine table so they can be reviewed and fixed at the source, not just counted.
+- **Data quality checks as tests:** row-count reconciliation between raw, cleaned and quarantined rows; checks for null keys, date ranges and hours limits; fail the run when a threshold is crossed.
+- **Monitoring and alerting:** log run time, row counts and rejection rates per run, and alert on failures or on a rejection rate that jumps from its normal level.
+- **Configuration and secrets:** move paths, thresholds and credentials out of the code into configuration and a secrets store.
+- **Schema changes and lineage:** version the schema with migrations and keep the raw files immutable so any run can be reproduced.
+
 ## What the simulated data shows
 
 - **Utilization varies more across offices than firm-wide averages suggest.**
