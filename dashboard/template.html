@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Performance Analytics</title>
+<meta name="description" content="Interactive BI dashboard on simulated timekeeping data for a multi-office architecture and engineering firm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style>
+  :root {
+    --bg: #f3eee7;
+    --card: #ffffff;
+    --card-alt: #f7f9fa;
+    --ink: #292936;
+    --ink-2: #4b4b5c;
+    --muted: #67718e;
+    --line: #e3dccf;
+    --accent: #dc7926;
+    --accent-ink: #a8530f;
+    --taupe: #a69282;
+    --band: #ece6dc;
+    --good: #1c4a36;
+    --bad: #b23b2e;
+    --shadow: 0 1px 2px rgba(41,41,54,.06), 0 6px 20px rgba(41,41,54,.06);
+    --grid: rgba(41,41,54,.08);
+  }
+  :root[data-theme="dark"] {
+    --bg: #17171f;
+    --card: #20202e;
+    --card-alt: #262636;
+    --ink: #f3eee7;
+    --ink-2: #cfc8bd;
+    --muted: #9aa3bd;
+    --line: #34344a;
+    --accent: #dc7926;
+    --accent-ink: #f0a064;
+    --taupe: #a69282;
+    --band: #2e2e42;
+    --good: #5db38d;
+    --bad: #e2705f;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 6px 20px rgba(0,0,0,.25);
+    --grid: rgba(243,238,231,.09);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    -webkit-font-smoothing: antialiased;
+    line-height: 1.45;
+  }
+  .num { font-variant-numeric: tabular-nums; }
+  a { color: var(--accent-ink); }
+
+  /* ---------- Header ---------- */
+  header {
+    background: linear-gradient(120deg, #292936 0%, #20202e 60%, #2b2230 100%);
+    color: #f3eee7;
+    padding: 34px 0 78px;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(600px 220px at 85% 0%, rgba(220,121,38,.28), transparent 70%),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 64px);
+    pointer-events: none;
+  }
+  header::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+    background: linear-gradient(90deg, #dc7926, #a69282 60%, transparent);
+  }
+  .wrap { max-width: 1240px; margin: 0 auto; padding: 0 28px; position: relative; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 26px; flex-wrap: wrap; }
+  .eyebrow { font-size: 12px; letter-spacing: .16em; text-transform: uppercase; color: #dc7926; font-weight: 600; }
+  .pill-sim {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase;
+    border: 1px solid rgba(243,238,231,.28); color: #f3eee7;
+    padding: 5px 12px; border-radius: 999px; background: rgba(243,238,231,.07);
+  }
+  .pill-sim::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #dc7926; box-shadow: 0 0 0 3px rgba(220,121,38,.25); }
+  .top-actions { display: flex; align-items: center; gap: 10px; }
+  .icon-btn {
+    border: 1px solid rgba(243,238,231,.28); background: rgba(243,238,231,.07); color: #f3eee7;
+    border-radius: 999px; padding: 6px 12px; font: inherit; font-size: 12px; font-weight: 500; cursor: pointer;
+  }
+  .icon-btn:hover { background: rgba(243,238,231,.16); }
+  .icon-btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, th:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  h1 { font-size: clamp(28px, 4.2vw, 44px); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; margin: 0 0 14px; max-width: 18ch; }
+  h1 em { font-style: normal; color: #dc7926; }
+  .lede { max-width: 66ch; color: #d9d2c6; font-size: 15.5px; margin: 0; }
+  .lede b { color: #fff; font-weight: 600; }
+
+  /* ---------- Layout ---------- */
+  main { max-width: 1240px; margin: -52px auto 0; padding: 0 28px 20px; position: relative; }
+  .kpi-grid { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 16px; margin-bottom: 22px; }
+  .kpi {
+    background: var(--card); border-radius: 14px; padding: 18px 20px 14px; box-shadow: var(--shadow);
+    border: 1px solid var(--line); border-top: 3px solid var(--accent);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .kpi:hover { transform: translateY(-2px); }
+  .kpi .label { font-size: 11.5px; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); font-weight: 600; }
+  .kpi .value { font-size: 34px; font-weight: 700; letter-spacing: -.02em; margin: 6px 0 2px; }
+  .kpi .sub { font-size: 12.5px; color: var(--ink-2); }
+  .kpi .spark { height: 34px; margin-top: 8px; }
+  .kpi svg { width: 100%; height: 100%; display: block; }
+
+  .grid-2 { display: grid; grid-template-columns: minmax(0,1.15fr) minmax(0,1fr); gap: 16px; margin-bottom: 16px; }
+  .grid-2.even { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+  .panel, .kpi { max-width: 100%; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: 20px 22px 18px; min-width: 0; }
+  .panel h2 { font-size: 17px; line-height: 1.3; margin: 0 0 4px; letter-spacing: -.01em; }
+  .panel h2 .hl { color: var(--accent-ink); }
+  .panel .sub { color: var(--muted); font-size: 12.5px; margin: 0 0 14px; }
+  .panel-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; flex-wrap: wrap; }
+  .chart-box { position: relative; height: 300px; }
+  .chart-box.tall { height: 340px; }
+  .seg { display: inline-flex; background: var(--card-alt); border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .seg button { border: 0; background: transparent; color: var(--ink-2); font: inherit; font-size: 12px; font-weight: 500; padding: 5px 12px; border-radius: 999px; cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  /* bullet bars */
+  .bullets { display: flex; flex-direction: column; gap: 13px; margin-top: 6px; }
+  .bullet-row { display: grid; grid-template-columns: 96px 1fr 58px; align-items: center; gap: 12px; }
+  .bullet-row .city { font-size: 13px; font-weight: 500; }
+  .bullet-row .val { font-size: 13px; font-weight: 600; text-align: right; }
+  .track { position: relative; height: 22px; border-radius: 4px; background: linear-gradient(90deg, var(--band) 0 100%); }
+  .track .fill { position: absolute; left: 0; top: 6px; height: 10px; border-radius: 2px; background: var(--ink); width: 0; transition: width .9s cubic-bezier(.2,.7,.2,1); }
+  .bullet-row.low .fill { background: var(--accent); }
+  .track .tick { position: absolute; top: 1px; bottom: 1px; width: 3px; background: var(--taupe); border-radius: 2px; }
+  .bullet-row:hover .track { outline: 1px solid var(--taupe); }
+  .legend { display: flex; gap: 18px; flex-wrap: wrap; font-size: 12px; color: var(--muted); margin-top: 16px; }
+  .legend i { display: inline-block; vertical-align: -2px; margin-right: 6px; }
+  .legend .l-fill { width: 18px; height: 8px; background: var(--ink); border-radius: 2px; }
+  .legend .l-low { width: 18px; height: 8px; background: var(--accent); border-radius: 2px; }
+  .legend .l-tick { width: 3px; height: 14px; background: var(--taupe); border-radius: 2px; }
+
+  /* segmented bars */
+  .segbar { display: flex; height: 38px; border-radius: 8px; overflow: hidden; margin: 6px 0 12px; gap: 2px; }
+  .segbar div { display: flex; align-items: center; padding: 0 12px; color: #fff; font-size: 13px; font-weight: 600; min-width: 0; white-space: nowrap; overflow: hidden; }
+  .seg-note { font-size: 13px; color: var(--ink-2); margin: 0 0 6px; }
+  .seg-legend { display: flex; gap: 16px; flex-wrap: wrap; font-size: 12.5px; color: var(--ink-2); }
+  .seg-legend span::before { content: ""; display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; background: var(--c); vertical-align: -1px; }
+  .callout { margin-top: 16px; padding: 12px 14px; background: var(--card-alt); border-left: 3px solid var(--accent); border-radius: 6px; font-size: 13px; color: var(--ink-2); }
+  .callout b { color: var(--ink); }
+
+  /* tables */
+  .block { margin-top: 16px; }
+  .controls { display: flex; gap: 10px; flex-wrap: wrap; margin: 0 0 12px; }
+  input[type=text], select {
+    padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; font: inherit; font-size: 13px; background: var(--card-alt); color: var(--ink);
+  }
+  input[type=text] { min-width: 250px; }
+  .table-wrap { overflow: auto; max-height: 460px; border: 1px solid var(--line); border-radius: 10px; }
+  table { border-collapse: separate; border-spacing: 0; width: 100%; font-size: 13px; }
+  th { position: sticky; top: 0; background: var(--card-alt); text-align: left; font-size: 11px; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); font-weight: 600; padding: 10px 12px; cursor: pointer; white-space: nowrap; border-bottom: 1px solid var(--line); user-select: none; z-index: 1; }
+  th:hover { color: var(--ink); }
+  th .arrow { opacity: 0; margin-left: 4px; }
+  th[aria-sort] .arrow { opacity: 1; color: var(--accent-ink); }
+  td { padding: 9px 12px; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  td.r, th.r { text-align: right; }
+  tbody tr:hover td { background: var(--card-alt); }
+  tbody tr:last-child td { border-bottom: 0; }
+  .status { display: inline-block; padding: 2px 9px; border-radius: 999px; font-size: 11.5px; font-weight: 600; background: var(--band); color: var(--ink-2); }
+  .status.Active { background: rgba(220,121,38,.16); color: var(--accent-ink); }
+  .status.Complete { background: rgba(28,74,54,.14); color: var(--good); }
+  .status.Cancelled { background: rgba(178,59,46,.14); color: var(--bad); }
+  .mbar { display: inline-flex; align-items: center; gap: 8px; justify-content: flex-end; width: 100%; }
+  .mbar .m-track { width: 70px; height: 6px; background: var(--band); border-radius: 3px; overflow: hidden; }
+  .mbar .m-fill { height: 100%; background: var(--good); border-radius: 3px; }
+  .mbar.thin .m-fill { background: var(--accent); }
+  .var-over { color: var(--bad); font-weight: 600; }
+  .var-under { color: var(--ink-2); }
+  .empty { padding: 34px; text-align: center; color: var(--muted); font-size: 14px; }
+  .count-note { font-size: 12px; color: var(--muted); margin-left: auto; align-self: center; }
+
+  .etl-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin-top: 8px; }
+  .etl-chip { background: var(--card-alt); border: 1px solid var(--line); border-radius: 10px; padding: 10px 14px; }
+  .etl-chip b { display: block; font-size: 20px; letter-spacing: -.01em; }
+  .etl-chip span { font-size: 12px; color: var(--muted); }
+  .etl-chip.key { border-color: var(--accent); }
+
+  footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 22px 20px 44px; }
+
+  .reveal { opacity: 0; transform: translateY(10px); animation: rise .6s ease forwards; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+  .static .reveal { animation: none; opacity: 1; transform: none; }
+  .static .track .fill { transition: none; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { animation: none; opacity: 1; transform: none; }
+    .track .fill { transition: none; }
+    .kpi { transition: none; }
+    html { scroll-behavior: auto; }
+  }
+  @media (max-width: 1000px) {
+    .kpi-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .grid-2, .grid-2.even { grid-template-columns: minmax(0,1fr); }
+  }
+  @media (max-width: 560px) {
+    .wrap, main { padding-left: 16px; padding-right: 16px; }
+    .kpi-grid { grid-template-columns: minmax(0,1fr); }
+    .bullet-row { grid-template-columns: 78px 1fr 52px; gap: 8px; }
+    input[type=text] { min-width: 0; width: 100%; }
+    .panel { padding: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="eyebrow">Studio Performance Analytics</div>
+      <div class="top-actions">
+        <span class="pill-sim">Simulated data</span>
+        <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
+      </div>
+    </div>
+    <h1>Where the hours go, and <em>where the margin goes</em></h1>
+    <p class="lede">A multi-office project dashboard built from raw timekeeping data: Python ETL, SQL analysis, and this page. The firm, people, clients and hours are <b>all simulated</b>; nothing here is real company data.</p>
+  </div>
+</header>
+
+<main>
+  <div class="kpi-grid" id="kpiGrid"></div>
+
+  <div class="grid-2">
+    <div class="panel reveal" style="animation-delay:.05s">
+      <h2 id="utilTitle">Utilization by office</h2>
+      <p class="sub">Billable hours as a share of hours logged. Bar = actual, tick = office target. Sorted by gap to target.</p>
+      <div class="bullets" id="bullets"></div>
+      <div class="legend"><span><i class="l-fill"></i>Actual</span><span><i class="l-low"></i>Largest gap to target</span><span><i class="l-tick"></i>Target</span></div>
+    </div>
+    <div class="panel reveal" style="animation-delay:.1s">
+      <h2 id="indTitle">Work mix by industry</h2>
+      <p class="sub">Billed value by client industry, in dollars.</p>
+      <div class="chart-box"><canvas id="chartIndustry"></canvas></div>
+    </div>
+  </div>
+
+  <div class="panel reveal" style="animation-delay:.15s; margin-bottom:16px">
+    <div class="panel-head">
+      <div>
+        <h2 id="trendTitle">Monthly trend</h2>
+        <p class="sub" id="trendSub">Firm-wide, all offices.</p>
+      </div>
+      <div class="seg" role="group" aria-label="Trend metric">
+        <button data-m="billable_hours" aria-pressed="true">Billable hours</button>
+        <button data-m="billed_value" aria-pressed="false">Billed value</button>
+        <button data-m="util" aria-pressed="false">Utilization</button>
+      </div>
+    </div>
+    <div class="chart-box tall"><canvas id="chartTrend"></canvas></div>
+  </div>
+
+  <div class="grid-2 even">
+    <div class="panel reveal">
+      <h2 id="schedTitle">Schedule performance</h2>
+      <p class="sub">Completed projects, delivered on time or early vs. late.</p>
+      <div class="segbar" id="schedBar"></div>
+      <div class="seg-legend" id="schedLegend"></div>
+      <div class="callout" id="schedCallout"></div>
+      <h3 style="font-size:14px;margin:22px 0 6px">Pipeline status</h3>
+      <div class="segbar" id="statusBar" style="height:28px"></div>
+      <div class="seg-legend" id="statusLegend"></div>
+    </div>
+    <div class="panel reveal">
+      <h2 id="scatterTitle">Budget burn vs. margin</h2>
+      <p class="sub">Each dot is a project. Right of the line = more hours used than budgeted.</p>
+      <div class="chart-box" style="height:340px"><canvas id="chartScatter"></canvas></div>
+    </div>
+  </div>
+
+  <section class="panel block reveal">
+    <h2>Project profitability</h2>
+    <p class="sub">Every tracked project. Gross margin = contract value minus actual labor cost at loaded rates. Click a column to sort.</p>
+    <div class="controls">
+      <input type="text" id="projectSearch" placeholder="Search project, client or office" aria-label="Search projects">
+      <select id="statusFilter" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option>Active</option><option>Complete</option><option>On Hold</option><option>Cancelled</option>
+      </select>
+      <span class="count-note" id="rowCount"></span>
+    </div>
+    <div class="table-wrap">
+      <table id="projectsTable">
+        <thead><tr>
+          <th data-key="project_name">Project<span class="arrow"></span></th>
+          <th data-key="client_name">Client<span class="arrow"></span></th>
+          <th data-key="industry_name">Industry<span class="arrow"></span></th>
+          <th data-key="office">Office<span class="arrow"></span></th>
+          <th data-key="status">Status<span class="arrow"></span></th>
+          <th class="r" data-key="budget_hours">Budget hrs<span class="arrow"></span></th>
+          <th class="r" data-key="actual_hours">Actual hrs<span class="arrow"></span></th>
+          <th class="r" data-key="hours_variance">Hrs variance<span class="arrow"></span></th>
+          <th class="r" data-key="contract_value">Contract value<span class="arrow"></span></th>
+          <th class="r" data-key="gross_margin">Gross margin<span class="arrow"></span></th>
+          <th class="r" data-key="margin_pct">Margin %<span class="arrow"></span></th>
+        </tr></thead>
+        <tbody id="projectsBody"></tbody>
+      </table>
+      <div class="empty" id="emptyState" hidden>No projects match. Clear the search or pick another status.</div>
+    </div>
+  </section>
+
+  <section class="panel block reveal">
+    <h2>Project manager performance</h2>
+    <p class="sub">Average margin across each manager's projects. Click a column to sort.</p>
+    <div class="table-wrap" style="max-height:340px">
+      <table id="pmTable">
+        <thead><tr>
+          <th data-key="project_manager">Project manager<span class="arrow"></span></th>
+          <th data-key="home_office">Home office<span class="arrow"></span></th>
+          <th class="r" data-key="projects_managed">Projects<span class="arrow"></span></th>
+          <th class="r" data-key="avg_margin_pct">Avg margin %<span class="arrow"></span></th>
+        </tr></thead>
+        <tbody id="pmBody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="panel block reveal">
+    <h2>Data quality and ETL</h2>
+    <p class="sub">What the cleaning pipeline did to the raw timekeeping export before any number above was calculated.</p>
+    <div class="etl-grid" id="etlGrid"></div>
+  </section>
+</main>
+
+<footer>
+  Studio Performance Analytics &middot; a self-directed BI portfolio project &middot; all data is simulated &middot; Python, SQLite, Chart.js
+</footer>
+
+<script>
+const DATA = __DATA_JSON__;
+
+const fmtNum = (n, d=0) => (n==null) ? "—" : Number(n).toLocaleString(undefined, {minimumFractionDigits:d, maximumFractionDigits:d});
+const fmtPct = (n, d=1) => (n==null) ? "—" : (n*100).toFixed(d) + "%";
+const fmtMoney = n => (n==null) ? "—" : "$" + Number(n).toLocaleString(undefined, {maximumFractionDigits:0});
+const fmtShort = n => n >= 1e6 ? "$" + (n/1e6).toFixed(1) + "M" : n >= 1e3 ? "$" + Math.round(n/1e3) + "K" : "$" + Math.round(n);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches || location.hash === "#static";
+if (reduceMotion) document.documentElement.classList.add("static");
+
+// ---------- theme ----------
+function applyTheme(t) {
+  document.documentElement.setAttribute("data-theme", t);
+  document.getElementById("themeBtn").textContent = t === "dark" ? "Light mode" : "Dark mode";
+}
+let theme = "light";
+try { theme = localStorage.getItem("spa-theme") || (matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light"); } catch(e) {}
+applyTheme(theme);
+document.getElementById("themeBtn").addEventListener("click", () => {
+  theme = theme === "dark" ? "light" : "dark";
+  try { localStorage.setItem("spa-theme", theme); } catch(e) {}
+  applyTheme(theme);
+  drawCharts();
+});
+
+const S = DATA.summary, ETL = DATA.etl_stats;
+const trend = DATA.monthly_trend.map(r => ({...r, util: r.total_hours ? r.billable_hours / r.total_hours : 0}));
+const monthLabel = m => { const [y, mo] = m.split("-"); return ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"][+mo-1] + " " + y.slice(2); };
+
+// ---------- KPIs ----------
+function spark(vals, color) {
+  const w = 200, h = 34, mn = Math.min(...vals), mx = Math.max(...vals), rng = (mx - mn) || 1;
+  const pts = vals.map((v, i) => [i / (vals.length - 1) * w, h - 3 - (v - mn) / rng * (h - 8)]);
+  const d = pts.map((p, i) => (i ? "L" : "M") + p[0].toFixed(1) + " " + p[1].toFixed(1)).join(" ");
+  return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="none" aria-hidden="true"><path d="${d} L${w} ${h} L0 ${h} Z" fill="${color}" opacity=".14"/><path d="${d}" fill="none" stroke="${color}" stroke-width="1.8" vector-effect="non-scaling-stroke"/></svg>`;
+}
+const late = DATA.schedule_performance.find(r => r.schedule_outcome === "Late") || {project_count:0, avg_days_variance:0};
+const ontime = DATA.schedule_performance.find(r => r.schedule_outcome !== "Late") || {project_count:0, avg_days_variance:0};
+const completed = late.project_count + ontime.project_count;
+function drawKpis() {
+  const a = css("--accent");
+  const kpis = [
+    {label:"Firm-wide utilization", num:S.firm_utilization*100, fmt:v => v.toFixed(1)+"%", sub:`${fmtNum(S.headcount)} employees, ${S.office_count} offices`, spark: spark(trend.map(r => r.util), a)},
+    {label:"Tracked contract value", num:S.total_contract_value, fmt:v => fmtMoney(v), sub:`${S.project_count} projects`, spark: spark(trend.map(r => r.billed_value), a)},
+    {label:"Clean timekeeping entries", num:S.clean_timekeeping_entries, fmt:v => fmtNum(v), sub:`from ${fmtNum(ETL.raw_rows)} raw rows, ${fmtNum(ETL.total_dropped)} removed`, spark: ""},
+    {label:"Completed projects late", num:late.project_count, fmt:v => fmtNum(v), suffix:` of ${completed}`, sub:`late by ${fmtNum(late.avg_days_variance,0)} days on average`, spark: ""},
+  ];
+  const grid = document.getElementById("kpiGrid");
+  grid.innerHTML = kpis.map((k, i) => `
+    <div class="kpi reveal" style="animation-delay:${i*0.07}s">
+      <div class="label">${k.label}</div>
+      <div class="value num"><span data-count="${k.num}" data-i="${i}">${k.fmt(k.num)}</span>${k.suffix ? `<span style="font-size:16px;font-weight:500;color:var(--muted)">${k.suffix}</span>` : ""}</div>
+      <div class="sub">${k.sub}</div>
+      <div class="spark">${k.spark}</div>
+    </div>`).join("");
+  if (!reduceMotion) grid.querySelectorAll("[data-count]").forEach(el => {
+    const k = kpis[+el.dataset.i], target = +el.dataset.count, t0 = performance.now();
+    (function step(t) { const p = Math.min(1, (t - t0) / 900), e = 1 - Math.pow(1 - p, 3); el.textContent = k.fmt(target * e); if (p < 1) requestAnimationFrame(step); })(t0);
+  });
+}
+
+// ---------- headline insights (computed from the data) ----------
+const util = [...DATA.utilization_by_office].sort((a, b) => (a.utilization_rate - a.avg_target_utilization) - (b.utilization_rate - b.avg_target_utilization));
+const hi = [...DATA.utilization_by_office].sort((a, b) => b.utilization_rate - a.utilization_rate)[0];
+const lo = [...DATA.utilization_by_office].sort((a, b) => a.utilization_rate - b.utilization_rate)[0];
+const gapPts = ((hi.utilization_rate - lo.utilization_rate) * 100).toFixed(1);
+document.getElementById("utilTitle").innerHTML = `${esc(lo.city)} runs <span class="hl">${gapPts} points</span> below ${esc(hi.city)}`;
+
+const ind = [...DATA.industry_mix].sort((a, b) => b.billed_value - a.billed_value);
+const indTotal = ind.reduce((s, r) => s + r.billed_value, 0);
+document.getElementById("indTitle").innerHTML = `${esc(ind[0].industry_name)} and ${esc(ind[1].industry_name)} bring in <span class="hl">${Math.round((ind[0].billed_value + ind[1].billed_value) / indTotal * 100)}%</span> of billed value`;
+
+// bullets
+function drawBullets() {
+  const el = document.getElementById("bullets");
+  el.innerHTML = util.map((r, i) => `
+    <div class="bullet-row ${i === 0 ? "low" : ""}" title="${esc(r.city)}: ${fmtPct(r.utilization_rate)} actual vs ${fmtPct(r.avg_target_utilization)} target">
+      <div class="city">${esc(r.city)}</div>
+      <div class="track"><div class="fill" data-w="${r.utilization_rate*100}"></div><div class="tick" style="left:calc(${r.avg_target_utilization*100}% - 1px)"></div></div>
+      <div class="val num">${fmtPct(r.utilization_rate)}</div>
+    </div>`).join("");
+  requestAnimationFrame(() => requestAnimationFrame(() => el.querySelectorAll(".fill").forEach(f => f.style.width = f.dataset.w + "%")));
+}
+
+// ---------- charts ----------
+let charts = {};
+const labelPlugin = {
+  id: "barLabels",
+  afterDatasetsDraw(chart) {
+    const {ctx} = chart; ctx.save(); ctx.font = "600 12px Inter, sans-serif"; ctx.fillStyle = css("--ink"); ctx.textBaseline = "middle";
+    chart.getDatasetMeta(0).data.forEach((bar, i) => ctx.fillText(fmtShort(chart.data.datasets[0].data[i]), bar.x + 8, bar.y));
+    ctx.restore();
+  }
+};
+const annotatePlugin = {
+  id: "annotate",
+  afterDatasetsDraw(chart) {
+    const notes = chart.options.plugins.annotate && chart.options.plugins.annotate.notes; if (!notes) return;
+    const {ctx, chartArea} = chart; ctx.save(); ctx.font = "600 11.5px Inter, sans-serif";
+    notes.forEach(n => {
+      const pt = chart.getDatasetMeta(0).data[n.index]; if (!pt) return;
+      const text = n.text, w = ctx.measureText(text).width, x = Math.min(Math.max(pt.x - w / 2, chartArea.left), chartArea.right - w), y = n.below ? pt.y + 22 : pt.y - 16;
+      ctx.fillStyle = css("--card"); ctx.globalAlpha = .85; ctx.fillRect(x - 4, y - 10, w + 8, 18); ctx.globalAlpha = 1;
+      ctx.fillStyle = css("--accent-ink"); ctx.textBaseline = "middle"; ctx.fillText(text, x, y);
+      ctx.beginPath(); ctx.arc(pt.x, pt.y, 5, 0, 7); ctx.fillStyle = css("--accent"); ctx.fill(); ctx.lineWidth = 2; ctx.strokeStyle = css("--card"); ctx.stroke();
+    });
+    ctx.restore();
+  }
+};
+const refLinePlugin = {
+  id: "refLine",
+  afterDraw(chart) {
+    if (chart.config.type !== "scatter") return;
+    const {ctx, chartArea, scales} = chart, x = scales.x.getPixelForValue(1);
+    ctx.save(); ctx.strokeStyle = css("--taupe"); ctx.setLineDash([5, 4]); ctx.beginPath(); ctx.moveTo(x, chartArea.top); ctx.lineTo(x, chartArea.bottom); ctx.stroke();
+    ctx.setLineDash([]); ctx.fillStyle = css("--muted"); ctx.font = "11px Inter, sans-serif"; ctx.fillText("budget", x + 6, chartArea.top + 12); ctx.restore();
+  }
+};
+let trendMetric = "billable_hours";
+const trendMeta = {
+  billable_hours: {title: () => { const p = trend.reduce((a, b) => b.billable_hours > a.billable_hours ? b : a); return `Billable hours peaked in <span class="hl">${monthLabel(p.month)}</span> at ${fmtNum(p.billable_hours)}`; }, f: v => fmtNum(v), t: v => fmtNum(v) + " hrs"},
+  billed_value:   {title: () => { const p = trend.reduce((a, b) => b.billed_value > a.billed_value ? b : a); return `Billed value peaked in <span class="hl">${monthLabel(p.month)}</span> at ${fmtMoney(p.billed_value)}`; }, f: v => fmtShort(v), t: v => fmtMoney(v)},
+  util:           {title: () => { const p = trend.filter(r => r.total_hours > 200).reduce((a, b) => b.util > a.util ? b : a, trend[0]); return `Utilization hit <span class="hl">${fmtPct(p.util)}</span> in ${monthLabel(p.month)}`; }, f: v => (v*100).toFixed(0) + "%", t: v => fmtPct(v)},
+};
+function drawCharts() {
+  Object.values(charts).forEach(c => c.destroy());
+  Chart.defaults.font.family = "Inter, sans-serif"; Chart.defaults.color = css("--muted"); Chart.defaults.borderColor = css("--grid");
+  const accent = css("--accent"), taupe = css("--taupe"), ink = css("--ink"), good = css("--good"), bad = css("--bad"), card = css("--card");
+  const anim = reduceMotion ? false : {duration: 900, easing: "easeOutQuart"};
+
+  // industry: sorted horizontal bars, top bar highlighted
+  charts.ind = new Chart(document.getElementById("chartIndustry"), {
+    type: "bar", plugins: [labelPlugin],
+    data: {labels: ind.map(r => r.industry_name), datasets: [{data: ind.map(r => r.billed_value), backgroundColor: ind.map((_, i) => i < 2 ? accent : taupe), borderRadius: 4, barThickness: 26}]},
+    options: {indexAxis: "y", responsive: true, maintainAspectRatio: false, animation: anim, layout: {padding: {right: 54}},
+      scales: {x: {display: false, grid: {display: false}}, y: {grid: {display: false}, border: {display: false}, ticks: {color: ink, font: {size: 12.5, weight: 500}}}},
+      plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => `${fmtMoney(c.raw)} billed, ${ind[c.dataIndex].project_count} projects`}}}}
+  });
+
+  // trend
+  const m = trendMeta[trendMetric], vals = trend.map(r => r[trendMetric]);
+  const iMax = vals.indexOf(Math.max(...vals)), iMin = vals.indexOf(Math.min(...vals.filter((v, i) => trend[i].total_hours > 200)));
+  const g = document.getElementById("chartTrend").getContext("2d"), grad = g.createLinearGradient(0, 0, 0, 340);
+  grad.addColorStop(0, accent + "66"); grad.addColorStop(1, accent + "05");
+  document.getElementById("trendTitle").innerHTML = m.title();
+  charts.trend = new Chart(document.getElementById("chartTrend"), {
+    type: "line", plugins: [annotatePlugin],
+    data: {labels: trend.map(r => monthLabel(r.month)), datasets: [{data: vals, borderColor: accent, backgroundColor: grad, fill: true, tension: .3, borderWidth: 2.5, pointRadius: 0, pointHoverRadius: 5, pointHoverBackgroundColor: accent}]},
+    options: {responsive: true, maintainAspectRatio: false, animation: anim, interaction: {mode: "index", intersect: false},
+      scales: {x: {grid: {display: false}, ticks: {maxTicksLimit: 9, maxRotation: 0}}, y: {beginAtZero: true, ticks: {callback: v => m.f(v)}, border: {display: false}}},
+      plugins: {legend: {display: false}, tooltip: {callbacks: {label: c => m.t(c.raw)}}, annotate: {notes: [{index: iMax, text: "Peak", below: true}]}}}
+  });
+
+  // scatter: budget burn vs margin
+  const pts = DATA.projects.filter(p => p.budget_hours > 0).map(p => ({x: p.actual_hours / p.budget_hours, y: p.margin_pct * 100, p}));
+  const cols = {Active: accent, Complete: ink, "On Hold": taupe, Cancelled: bad};
+  charts.sc = new Chart(document.getElementById("chartScatter"), {
+    type: "scatter", plugins: [refLinePlugin],
+    data: {datasets: [{data: pts, pointRadius: 5, pointHoverRadius: 8, backgroundColor: pts.map(d => (cols[d.p.status] || taupe) + "cc"), borderColor: card, borderWidth: 1}]},
+    options: {responsive: true, maintainAspectRatio: false, animation: anim,
+      scales: {x: {title: {display: true, text: "Actual hours / budget hours"}, ticks: {callback: v => v.toFixed(1) + "x"}, grid: {display: false}}, y: {title: {display: true, text: "Gross margin %"}, ticks: {callback: v => v + "%"}, border: {display: false}}},
+      plugins: {legend: {display: false}, tooltip: {callbacks: {title: c => c[0].raw.p.project_name, label: c => [`${c.raw.x.toFixed(2)}x of budget hours`, `${c.raw.y.toFixed(1)}% margin, ${c.raw.p.status}`]}}}}
+  });
+}
+const over = DATA.projects.filter(p => p.budget_hours > 0 && p.actual_hours > p.budget_hours).length;
+document.getElementById("scatterTitle").innerHTML = `${over} of ${DATA.projects.length} projects burned <span class="hl">more hours than budgeted</span>`;
+document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
+  trendMetric = b.dataset.m; document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); drawCharts();
+}));
+
+// ---------- schedule + status bars ----------
+function drawBars() {
+  const tot = completed || 1, pl = late.project_count / tot * 100;
+  document.getElementById("schedTitle").innerHTML = `<span class="hl">${late.project_count} of ${completed}</span> completed projects finished late`;
+  document.getElementById("schedBar").innerHTML =
+    `<div style="width:${pl}%;background:var(--bad)">${late.project_count} late</div><div style="width:${100-pl}%;background:var(--good)">${ontime.project_count} on time or early</div>`;
+  document.getElementById("schedLegend").innerHTML =
+    `<span style="--c:var(--bad)">Late: ${fmtNum(late.avg_days_variance,1)} days over, on average</span><span style="--c:var(--good)">On time or early: ${fmtNum(Math.abs(ontime.avg_days_variance),1)} days ${ontime.avg_days_variance <= 0 ? "ahead" : "over"}, on average</span>`;
+  document.getElementById("schedCallout").innerHTML = `<b>Read:</b> schedule slippage is more common than budget overrun in this data (${late.project_count} late vs. ${over} over budget hours).`;
+  const order = ["Active", "Complete", "On Hold", "Cancelled"], colors = {Active: "var(--accent)", Complete: "var(--ink)", "On Hold": "var(--taupe)", Cancelled: "var(--bad)"};
+  const st = order.map(k => DATA.status_breakdown.find(r => r.status === k)).filter(Boolean), n = st.reduce((s, r) => s + r.project_count, 0) || 1;
+  document.getElementById("statusBar").innerHTML = st.map(r => `<div style="width:${r.project_count/n*100}%;background:${colors[r.status]};${r.status==="Complete"?"color:var(--bg)":""}" title="${r.status}: ${r.project_count}">${r.project_count/n > .08 ? r.project_count : ""}</div>`).join("");
+  document.getElementById("statusLegend").innerHTML = st.map(r => `<span style="--c:${colors[r.status]}">${r.status} ${r.project_count}</span>`).join("");
+}
+
+// ---------- tables ----------
+function makeSortable(tableId, getRows, render, state) {
+  const ths = document.querySelectorAll(`#${tableId} th`);
+  const setArrows = () => ths.forEach(th => { const on = th.dataset.key === state.key; th.toggleAttribute("aria-sort", on); if (on) th.setAttribute("aria-sort", state.dir > 0 ? "ascending" : "descending"); th.querySelector(".arrow").textContent = on ? (state.dir > 0 ? "▲" : "▼") : ""; });
+  ths.forEach(th => { th.tabIndex = 0;
+    const go = () => { state.dir = state.key === th.dataset.key ? -state.dir : 1; state.key = th.dataset.key; setArrows(); render(); };
+    th.addEventListener("click", go); th.addEventListener("keydown", e => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); go(); } }); });
+  setArrows();
+}
+const pState = {key: "margin_pct", dir: 1};
+function renderProjects() {
+  const q = document.getElementById("projectSearch").value.toLowerCase(), sf = document.getElementById("statusFilter").value;
+  const rows = DATA.projects.filter(r => (!sf || r.status === sf) && (!q || (r.project_name + " " + r.client_name + " " + r.office).toLowerCase().includes(q)));
+  const k = pState.key; rows.sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0) * pState.dir);
+  document.getElementById("projectsBody").innerHTML = rows.map(r => {
+    const mp = Math.max(0, Math.min(1, r.margin_pct)) * 100, v = r.hours_variance;
+    return `<tr><td>${esc(r.project_name)}</td><td>${esc(r.client_name)}</td><td>${esc(r.industry_name)}</td><td>${esc(r.office)}</td>
+      <td><span class="status ${r.status.replace(" ", "-")}">${esc(r.status)}</span></td>
+      <td class="r num">${fmtNum(r.budget_hours)}</td><td class="r num">${fmtNum(r.actual_hours)}</td>
+      <td class="r num ${v > 0 ? "var-over" : "var-under"}">${v > 0 ? "+" : ""}${fmtNum(v)}</td>
+      <td class="r num">${fmtMoney(r.contract_value)}</td><td class="r num">${fmtMoney(r.gross_margin)}</td>
+      <td class="r num"><span class="mbar ${r.margin_pct < .6 ? "thin" : ""}"><span class="m-track"><span class="m-fill" style="width:${mp}%;display:block"></span></span>${fmtPct(r.margin_pct)}</span></td></tr>`;
+  }).join("");
+  document.getElementById("emptyState").hidden = rows.length > 0;
+  document.getElementById("rowCount").textContent = `${rows.length} of ${DATA.projects.length} projects`;
+}
+const mState = {key: "avg_margin_pct", dir: -1};
+function renderPM() {
+  const k = mState.key, rows = [...DATA.pm_performance].sort((a, b) => (a[k] > b[k] ? 1 : a[k] < b[k] ? -1 : 0) * mState.dir);
+  document.getElementById("pmBody").innerHTML = rows.map(r => `<tr><td>${esc(r.project_manager)}</td><td>${esc(r.home_office)}</td><td class="r num">${r.projects_managed}</td>
+    <td class="r num"><span class="mbar ${r.avg_margin_pct < .6 ? "thin" : ""}"><span class="m-track"><span class="m-fill" style="width:${Math.max(0, Math.min(1, r.avg_margin_pct))*100}%;display:block"></span></span>${fmtPct(r.avg_margin_pct)}</span></td></tr>`).join("");
+}
+document.getElementById("projectSearch").addEventListener("input", renderProjects);
+document.getElementById("statusFilter").addEventListener("change", renderProjects);
+makeSortable("projectsTable", null, renderProjects, pState); makeSortable("pmTable", null, renderPM, mState);
+
+// ---------- ETL ----------
+const etlLabels = [["raw_rows", "Raw rows", true], ["dropped_hours_missing", "Blank hours"], ["dropped_hours_negative", "Negative hours"], ["dropped_duplicate", "Duplicate syncs"], ["dropped_orphan_employee", "Orphan employee refs"],
+  ["dropped_hours_implausible_outlier", "Implausible (>16h) entries"], ["dropped_hours_unparseable", "Unparseable hours"], ["dropped_orphan_project", "Orphan project refs"], ["dropped_bad_date", "Unparseable dates"], ["total_dropped", "Total removed"], ["clean_rows", "Clean rows loaded", true]];
+document.getElementById("etlGrid").innerHTML = etlLabels.filter(([k]) => ETL[k] !== undefined).map(([k, l, key]) => `<div class="etl-chip ${key ? "key" : ""}"><b class="num">${fmtNum(ETL[k])}</b><span>${l}</span></div>`).join("");
+
+drawKpis(); drawBullets(); drawBars(); drawCharts(); renderProjects(); renderPM();
+</script>
+</body>
+</html>
