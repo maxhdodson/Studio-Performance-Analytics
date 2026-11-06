@@ -3,3 +3,8 @@ __pycache__/
 .DS_Store
 node_modules/
 *.db-journal
+
+# personal files, never commit
+Max_Dodson_Resume.*
+resume_build.js
+_preview_resume.jpg
