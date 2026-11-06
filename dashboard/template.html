@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Studio Performance Analytics</title>
-<meta name="description" content="Interactive BI dashboard on simulated timekeeping data for a multi-office architecture and engineering firm.">
+<title>Architecture &amp; Engineering Studio Data Analysis</title>
+<meta name="description" content="Interactive dashboard on a simulated dataset: staff utilization, project profitability and schedule performance for a multi-office architecture and engineering firm.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -95,7 +95,7 @@
   }
   .icon-btn:hover { background: rgba(243,238,231,.16); }
   .icon-btn:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, th:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-  h1 { font-size: clamp(28px, 4.2vw, 44px); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; margin: 0 0 14px; max-width: 18ch; }
+  h1 { font-size: clamp(28px, 4.2vw, 44px); line-height: 1.08; letter-spacing: -.02em; font-weight: 700; margin: 0 0 14px; max-width: 22ch; }
   h1 em { font-style: normal; color: #dc7926; }
   .lede { max-width: 66ch; color: #d9d2c6; font-size: 15.5px; margin: 0; }
   .lede b { color: #fff; font-weight: 600; }
@@ -190,7 +190,9 @@
   .etl-chip span { font-size: 12px; color: var(--muted); }
   .etl-chip.key { border-color: var(--accent); }
 
-  footer { text-align: center; color: var(--muted); font-size: 12.5px; padding: 22px 20px 44px; }
+  footer { max-width: 1240px; margin: 8px auto 0; padding: 8px 28px 48px; }
+  .data-note { background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 10px; padding: 14px 18px; font-size: 15px; color: var(--ink); }
+  .foot-meta { margin-top: 14px; font-size: 13px; color: var(--ink-2); text-align: center; }
 
   .reveal { opacity: 0; transform: translateY(10px); animation: rise .6s ease forwards; }
   @keyframes rise { to { opacity: 1; transform: none; } }
@@ -222,12 +224,11 @@
     <div class="topbar">
       <div class="eyebrow">Studio Performance Analytics</div>
       <div class="top-actions">
-        <span class="pill-sim">Simulated data</span>
         <button class="icon-btn" id="themeBtn" aria-label="Toggle dark mode">Dark mode</button>
       </div>
     </div>
-    <h1>Where the hours go, and <em>where the margin goes</em></h1>
-    <p class="lede">A multi-office project dashboard built from raw timekeeping data: Python ETL, SQL analysis, and this page. The firm, people, clients and hours are <b>all simulated</b>; nothing here is real company data.</p>
+    <h1>Architecture &amp; Engineering Studio Data Analysis</h1>
+    <p class="lede">Staff utilization, project profitability and schedule performance across a multi-office architecture and engineering firm, built from project timekeeping data.</p>
   </div>
 </header>
 
@@ -236,13 +237,13 @@
 
   <div class="grid-2">
     <div class="panel reveal" style="animation-delay:.05s">
-      <h2 id="utilTitle">Utilization by office</h2>
+      <h2 id="utilTitle">Billable utilization by office, against target</h2>
       <p class="sub">Billable hours as a share of hours logged. Bar = actual, tick = office target. Sorted by gap to target.</p>
       <div class="bullets" id="bullets"></div>
       <div class="legend"><span><i class="l-fill"></i>Actual</span><span><i class="l-low"></i>Largest gap to target</span><span><i class="l-tick"></i>Target</span></div>
     </div>
     <div class="panel reveal" style="animation-delay:.1s">
-      <h2 id="indTitle">Work mix by industry</h2>
+      <h2 id="indTitle">Billed value by industry</h2>
       <p class="sub">Billed value by client industry, in dollars.</p>
       <div class="chart-box"><canvas id="chartIndustry"></canvas></div>
     </div>
@@ -275,8 +276,8 @@
       <div class="seg-legend" id="statusLegend"></div>
     </div>
     <div class="panel reveal">
-      <h2 id="scatterTitle">Budget burn vs. margin</h2>
-      <p class="sub">Each dot is a project. Right of the line = more hours used than budgeted.</p>
+      <h2 id="scatterTitle">Budget hours used against margin</h2>
+      <p class="sub">Each point is a project. Points to the right of the dashed line used more hours than budgeted.</p>
       <div class="chart-box" style="height:340px"><canvas id="chartScatter"></canvas></div>
     </div>
   </div>
@@ -337,7 +338,8 @@
 </main>
 
 <footer>
-  Studio Performance Analytics &middot; a self-directed BI portfolio project &middot; all data is simulated &middot; Python, SQLite, Chart.js
+  <div class="data-note"><b>Data note:</b> all data on this page is simulated for demonstration; no real firm, client or employee data is shown.</div>
+  <div class="foot-meta">Studio Performance Analytics &middot; a self-directed business intelligence portfolio project &middot; Python, SQLite, Chart.js</div>
 </footer>
 
 <script>
@@ -408,11 +410,11 @@ const util = [...DATA.utilization_by_office].sort((a, b) => (a.utilization_rate 
 const hi = [...DATA.utilization_by_office].sort((a, b) => b.utilization_rate - a.utilization_rate)[0];
 const lo = [...DATA.utilization_by_office].sort((a, b) => a.utilization_rate - b.utilization_rate)[0];
 const gapPts = ((hi.utilization_rate - lo.utilization_rate) * 100).toFixed(1);
-document.getElementById("utilTitle").innerHTML = `${esc(lo.city)} runs <span class="hl">${gapPts} points</span> below ${esc(hi.city)}`;
+document.getElementById("utilTitle").innerHTML = `Billable utilization by office: <span class="hl">${fmtPct(lo.utilization_rate)}</span> (${esc(lo.city)}) to <span class="hl">${fmtPct(hi.utilization_rate)}</span> (${esc(hi.city)})`;
 
 const ind = [...DATA.industry_mix].sort((a, b) => b.billed_value - a.billed_value);
 const indTotal = ind.reduce((s, r) => s + r.billed_value, 0);
-document.getElementById("indTitle").innerHTML = `${esc(ind[0].industry_name)} and ${esc(ind[1].industry_name)} bring in <span class="hl">${Math.round((ind[0].billed_value + ind[1].billed_value) / indTotal * 100)}%</span> of billed value`;
+document.getElementById("indTitle").innerHTML = `Billed value by industry: ${esc(ind[0].industry_name)} and ${esc(ind[1].industry_name)} account for <span class="hl">${Math.round((ind[0].billed_value + ind[1].billed_value) / indTotal * 100)}%</span>`;
 
 // bullets
 function drawBullets() {
@@ -462,9 +464,9 @@ const refLinePlugin = {
 };
 let trendMetric = "billable_hours";
 const trendMeta = {
-  billable_hours: {title: () => { const p = trend.reduce((a, b) => b.billable_hours > a.billable_hours ? b : a); return `Billable hours peaked in <span class="hl">${monthLabel(p.month)}</span> at ${fmtNum(p.billable_hours)}`; }, f: v => fmtNum(v), t: v => fmtNum(v) + " hrs"},
-  billed_value:   {title: () => { const p = trend.reduce((a, b) => b.billed_value > a.billed_value ? b : a); return `Billed value peaked in <span class="hl">${monthLabel(p.month)}</span> at ${fmtMoney(p.billed_value)}`; }, f: v => fmtShort(v), t: v => fmtMoney(v)},
-  util:           {title: () => { const p = trend.filter(r => r.total_hours > 200).reduce((a, b) => b.util > a.util ? b : a, trend[0]); return `Utilization hit <span class="hl">${fmtPct(p.util)}</span> in ${monthLabel(p.month)}`; }, f: v => (v*100).toFixed(0) + "%", t: v => fmtPct(v)},
+  billable_hours: {title: () => { const p = trend.reduce((a, b) => b.billable_hours > a.billable_hours ? b : a); return `Monthly billable hours: peak of <span class="hl">${fmtNum(p.billable_hours)}</span> in ${monthLabel(p.month)}`; }, f: v => fmtNum(v), t: v => fmtNum(v) + " hrs"},
+  billed_value:   {title: () => { const p = trend.reduce((a, b) => b.billed_value > a.billed_value ? b : a); return `Monthly billed value: peak of <span class="hl">${fmtMoney(p.billed_value)}</span> in ${monthLabel(p.month)}`; }, f: v => fmtShort(v), t: v => fmtMoney(v)},
+  util:           {title: () => { const p = trend.filter(r => r.total_hours > 200).reduce((a, b) => b.util > a.util ? b : a, trend[0]); return `Monthly billable utilization: high of <span class="hl">${fmtPct(p.util)}</span> in ${monthLabel(p.month)}`; }, f: v => (v*100).toFixed(0) + "%", t: v => fmtPct(v)},
 };
 function drawCharts() {
   Object.values(charts).forEach(c => c.destroy());
@@ -507,7 +509,7 @@ function drawCharts() {
   });
 }
 const over = DATA.projects.filter(p => p.budget_hours > 0 && p.actual_hours > p.budget_hours).length;
-document.getElementById("scatterTitle").innerHTML = `${over} of ${DATA.projects.length} projects burned <span class="hl">more hours than budgeted</span>`;
+document.getElementById("scatterTitle").innerHTML = `Hours used against budget: <span class="hl">${over} of ${DATA.projects.length}</span> projects exceeded budgeted hours`;
 document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click", () => {
   trendMetric = b.dataset.m; document.querySelectorAll(".seg button").forEach(x => x.setAttribute("aria-pressed", x === b ? "true" : "false")); drawCharts();
 }));
@@ -515,12 +517,12 @@ document.querySelectorAll(".seg button").forEach(b => b.addEventListener("click"
 // ---------- schedule + status bars ----------
 function drawBars() {
   const tot = completed || 1, pl = late.project_count / tot * 100;
-  document.getElementById("schedTitle").innerHTML = `<span class="hl">${late.project_count} of ${completed}</span> completed projects finished late`;
+  document.getElementById("schedTitle").innerHTML = `Schedule performance: <span class="hl">${late.project_count} of ${completed}</span> completed projects finished late`;
   document.getElementById("schedBar").innerHTML =
     `<div style="width:${pl}%;background:var(--bad)">${late.project_count} late</div><div style="width:${100-pl}%;background:var(--good)">${ontime.project_count} on time or early</div>`;
   document.getElementById("schedLegend").innerHTML =
     `<span style="--c:var(--bad)">Late: ${fmtNum(late.avg_days_variance,1)} days over, on average</span><span style="--c:var(--good)">On time or early: ${fmtNum(Math.abs(ontime.avg_days_variance),1)} days ${ontime.avg_days_variance <= 0 ? "ahead" : "over"}, on average</span>`;
-  document.getElementById("schedCallout").innerHTML = `<b>Read:</b> schedule slippage is more common than budget overrun in this data (${late.project_count} late vs. ${over} over budget hours).`;
+  document.getElementById("schedCallout").innerHTML = `<b>Observation:</b> schedule slippage is more common than budget overrun in this data (${late.project_count} late vs. ${over} over budget hours).`;
   const order = ["Active", "Complete", "On Hold", "Cancelled"], colors = {Active: "var(--accent)", Complete: "var(--ink)", "On Hold": "var(--taupe)", Cancelled: "var(--bad)"};
   const st = order.map(k => DATA.status_breakdown.find(r => r.status === k)).filter(Boolean), n = st.reduce((s, r) => s + r.project_count, 0) || 1;
   document.getElementById("statusBar").innerHTML = st.map(r => `<div style="width:${r.project_count/n*100}%;background:${colors[r.status]};${r.status==="Complete"?"color:var(--bg)":""}" title="${r.status}: ${r.project_count}">${r.project_count/n > .08 ? r.project_count : ""}</div>`).join("");
