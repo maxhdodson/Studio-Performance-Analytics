@@ -1,6 +1,6 @@
 -- ============================================================================
 -- 02_analysis_queries.sql
--- Core analytical queries behind the Studio Performance Analytics dashboard.
+-- Core analytical queries behind the Architecture Studio Performance Analytics dashboard.
 -- Run against the cleaned database produced by etl/clean_and_load.py.
 -- Each block is self-contained and annotated with the business question
 -- it answers -- these are also the queries etl/clean_and_load.py executes

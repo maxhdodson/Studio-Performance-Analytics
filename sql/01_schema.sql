@@ -1,6 +1,6 @@
 -- ============================================================================
 -- 01_schema.sql
--- Relational schema for the Studio Performance Analytics project.
+-- Relational schema for the Architecture Studio Performance Analytics project.
 -- Modeled on a multi-office, project-based architecture & engineering firm.
 -- SQLite-compatible; portable to Postgres/SQL Server with minor type changes.
 -- ============================================================================

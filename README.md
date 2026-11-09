@@ -1,4 +1,4 @@
-# Studio Performance Analytics
+# Architecture Studio Performance Analytics
 
 An end-to-end BI project: a Python ETL pipeline cleans raw timekeeping data, SQL models staff utilization and project profitability, and a Chart.js dashboard shows the results.
 
